@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Corrigé Question 3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 12mm 0 12mm 0; }
+  :root {
+    --bleu:#1d48b8; --rouge:#d0232c; --vert:#12814a; --noir:#1d1d1f;
+    --grid:#c9d6ea; --marge:#ec8a8a; --papier:#fdfdfb; --fluo:rgba(255,235,59,.55); --fluo-rose:rgba(255,128,171,.35); --fluo-vert:rgba(118,255,3,.30);
+    --sq:6mm;
+  }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html {
+    background-color: var(--papier);
+    background-image:
+      linear-gradient(90deg, transparent 24mm, var(--marge) 24mm, var(--marge) calc(24mm + 1.4px), transparent calc(24mm + 1.4px)),
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 100% 100%, var(--sq) var(--sq), var(--sq) var(--sq);
+  }
+  body { margin: 0 auto; max-width: 210mm; padding: 0 12mm 0 29mm; color: var(--bleu);
+         font-family: "Patrick Hand", "Comic Sans MS", cursive; font-size: 17px; line-height: var(--sq); }
+  @media screen { body { padding-top: 12mm; padding-bottom: 20mm; } }
+
+  .sheet { break-before: page; }
+  .sheet:first-of-type { break-before: auto; }
+  h1, h2, h3, .cav { font-family: "Caveat", cursive; font-weight: 700; }
+  h1 { color: var(--rouge); font-size: 46px; line-height: calc(var(--sq)*2); margin: 0 0 var(--sq); }
+  h2 { color: var(--rouge); font-size: 34px; line-height: calc(var(--sq)*2); margin: var(--sq) 0 0; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 5px; }
+  h2 .pts { font-size: 22px; color: var(--noir); text-decoration: none; display:inline-block; margin-left: 8px; }
+  h3 { color: var(--rouge); font-size: 25px; line-height: calc(var(--sq)*1.5); margin: var(--sq) 0 0; }
+  h3::before { content: "▸ "; color: var(--rouge); }
+  p { margin: 0 0 calc(var(--sq)*.5); }
+  ul, ol { margin: 0 0 calc(var(--sq)*.5); padding-left: 22px; }
+  .k { color: var(--noir); } .r { color: var(--rouge); } .g { color: var(--vert); } .b { color: var(--bleu); }
+  .hl { background: linear-gradient(transparent 12%, var(--fluo) 12%, var(--fluo) 88%, transparent 88%); padding: 0 3px; }
+  .hlr { background: linear-gradient(transparent 12%, var(--fluo-rose) 12%, var(--fluo-rose) 88%, transparent 88%); padding: 0 3px; }
+  .hlv { background: linear-gradient(transparent 12%, var(--fluo-vert) 12%, var(--fluo-vert) 88%, transparent 88%); padding: 0 3px; }
+  .ul { text-decoration: underline wavy var(--rouge); text-underline-offset: 4px; }
+  .big { font-size: 21px; }
+  .small { font-size: 15px; }
+  .center { text-align: center; }
+
+  /* hand-drawn boxes */
+  .box { display: inline-block; border: 2.4px solid var(--rouge); padding: 4px 14px; margin: 6px 0;
+         border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px; color: var(--bleu); }
+  .box.big { font-size: 21px; }
+  .note { border: 2px dashed var(--vert); color: var(--vert); padding: 6px 12px 8px; margin: calc(var(--sq)*.6) 0;
+          border-radius: 6px 18px 8px 16px / 14px 6px 18px 8px; background: rgba(255,255,255,.65); transform: rotate(-.35deg); }
+  .note .t, .piege .t, .oral .t, .enonce .t { font-family: "Caveat", cursive; font-weight: 700; font-size: 24px; display:block; line-height: 1.1; margin-bottom: 2px; }
+  .piege { border: 2.2px solid var(--rouge); color: var(--rouge); padding: 6px 12px 8px; margin: calc(var(--sq)*.6) 0; background: rgba(255,240,240,.75);
+           border-radius: 15px 255px 15px 225px / 225px 15px 255px 15px; transform: rotate(.3deg); }
+  .oral { border: 2px solid var(--noir); color: var(--noir); padding: 6px 12px 8px; margin: calc(var(--sq)*.6) 0; background: #fff8c4;
+          box-shadow: 3px 4px 0 rgba(0,0,0,.08); transform: rotate(-.6deg); border-radius: 2px; }
+  .enonce { color: var(--noir); border-left: 4px solid var(--noir); padding: 2px 0 4px 12px; margin: calc(var(--sq)*.5) 0; }
+  .src { font-size: 14px; opacity: .85; }
+
+  /* step numbers */
+  .n { display:inline-flex; align-items:center; justify-content:center; width: 24px; height: 24px; border: 2px solid var(--rouge); color: var(--rouge);
+       border-radius: 50% 45% 52% 48%; font-family: "Caveat", cursive; font-weight: 700; font-size: 18px; margin-right: 6px; vertical-align: 1px; line-height:1; }
+  .step { margin: calc(var(--sq)*.5) 0; }
+  .arrow { color: var(--vert); font-family: "Caveat", cursive; font-size: 22px; font-weight: 700; }
+  .side { color: var(--vert); font-family: "Caveat", cursive; font-size: 21px; font-weight: 700; }
+  .strike { text-decoration: line-through; text-decoration-color: var(--rouge); text-decoration-thickness: 2px; opacity: .55; }
+
+  /* handwritten maths */
+  .math { display: block; margin: calc(var(--sq)*.5) 0 calc(var(--sq)*.5) 14px; line-height: 1.6; }
+  .m, .d { display: inline-flex; vertical-align: middle; margin: 2px 4px; padding: 2px 9px;
+           border-left: 2.2px solid currentColor; border-right: 2.2px solid currentColor; }
+  .m { border-radius: 14px / 50%; }
+  .d { border-radius: 0; padding: 2px 7px; }
+  .m > .c, .d > .c { display: grid; grid-auto-flow: row; gap: 1px 14px; text-align: center; line-height: 1.35; }
+  .c2 { grid-template-columns: repeat(2, auto); } .c3 { grid-template-columns: repeat(3, auto); } .c4 { grid-template-columns: repeat(4, auto); } .c1 { grid-template-columns: auto; }
+  .bar { border-left: 2px solid currentColor; padding-left: 10px; }
+  .fr { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; line-height: 1.05; margin: 0 2px; font-size: .92em; }
+  .fr > span:last-child { border-top: 1.8px solid currentColor; padding-top: 1px; }
+  .cell-r { color: var(--rouge); font-weight: bold; } .cell-g { color: var(--vert); font-weight: bold; } .cell-k { color: var(--noir); }
+  .bgr { background: var(--fluo-rose); border-radius: 4px; } .bgy { background: var(--fluo); border-radius: 4px; } .bgv { background: var(--fluo-vert); border-radius: 4px; }
+  .x { color: #9aa; text-decoration: line-through; text-decoration-color: var(--rouge); text-decoration-thickness: 2px; }
+  .sys { display: inline-flex; align-items: center; vertical-align: middle; }
+  .sys::before { content: "{"; font-family: "Caveat", cursive; font-size: 64px; line-height: 1; margin-right: 6px; transform: scaleX(.8); }
+  .sys > div { display: grid; gap: 0; line-height: 1.5; }
+
+  /* tables */
+  table.h { border-collapse: collapse; margin: calc(var(--sq)*.5) 0; color: var(--bleu); }
+  table.h th, table.h td { border: 1.8px solid var(--bleu); padding: 2px 10px; text-align: center; line-height: 1.35; }
+  table.h th { color: var(--rouge); font-family: "Caveat", cursive; font-size: 20px; }
+  .tick { color: var(--vert); font-weight: bold; } .cross { color: var(--rouge); font-weight: bold; }
+
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: start; }
+  svg text { font-family: "Caveat", cursive; }
+  .keep, .note, .piege, .oral, .box, .cols, .math, table.h, .step { break-inside: avoid; }
+  h2, h3 { break-after: avoid; }
+  .legend span { display:inline-block; margin-right: 14px; }
+  .toc li { margin-bottom: 2px; }
+  @media (max-width: 640px) { body { padding: 10px 14px 10px 30px; font-size: 16px; } .cols { grid-template-columns: 1fr; } .math { margin-left: 0; overflow-x: auto; } }
+</style>
+</head>
+<body>
+
+<!-- ================= PAGE 1 : ÉNONCÉ + PLAN ================= -->
+<section class="sheet">
+  <h1>Corrigé : Question 3</h1>
+  <p class="k big">Un système de 3 équations à 4 inconnues, expliqué pas à pas.</p>
+
+  <div class="enonce"><span class="t">L'énoncé</span>
+    Consider the following system : &nbsp;
+    <span class="sys"><div><span>x₁ − x₂ = 1</span><span>x₂ − x₃ = 1</span><span>x₃ + 3x₄ = 3</span></div></span>
+    <br>1) Write this system in matrix form.
+    <br>2) Show that this system of equations has infinite solutions.
+    <br>3) Provide one unique solution associated to x₄ = −1.
+    <br>4) Provide one unique solution associated to x₄ = 1.
+  </div>
+
+  <h3>Ce que l'énoncé veut dire, en français simple</h3>
+  <table class="h">
+    <tr><th>Question</th><th>En vrai, on te demande…</th><th>Outil</th></tr>
+    <tr><td>1</td><td>de ranger les nombres du système dans des tableaux</td><td>A · x = b</td></tr>
+    <tr><td>2</td><td>de prouver qu'il existe une infinité de 4-uplets qui marchent</td><td>escalier, pivots, variable libre</td></tr>
+    <tr><td>3</td><td>de trouver LA solution quand on impose x₄ = −1</td><td>remplacer, remonter</td></tr>
+    <tr><td>4</td><td>pareil avec x₄ = 1</td><td>remplacer, remonter</td></tr>
+  </table>
+
+  <div class="note"><span class="t">✎ L'idée en une phrase</span>
+    On a <b>4 inconnues</b> mais seulement <b>3 équations</b> (3 « règles »). Les règles ne suffisent pas à bloquer les 4 nombres :
+    il en reste <b>un qu'on peut choisir librement</b> (ici x₄). Une fois qu'on l'a choisi, les 3 autres sont forcés.
+    Les questions 3 et 4, c'est justement « choisis x₄, et trouve les autres ».
+  </div>
+
+  <h3>Le vocabulaire à connaître</h3>
+  <div class="cols">
+    <div class="note"><span class="t">Solution</span>Une liste de 4 nombres (x₁, x₂, x₃, x₄) qui rend les 3 équations vraies <b>en même temps</b>.</div>
+    <div class="note"><span class="t">Coefficient</span>Le nombre devant une inconnue. Dans « 3x₄ », c'est 3. Dans « −x₂ », c'est −1. Si l'inconnue n'apparaît pas, c'est 0.</div>
+    <div class="note"><span class="t">Pivot</span>Le premier nombre non nul d'une ligne, une fois le système en escalier.</div>
+    <div class="note"><span class="t">Variable libre</span>Une inconnue sans pivot : on lui donne la valeur qu'on veut (on l'appelle t).</div>
+  </div>
+</section>
+
+<!-- ================= PAGE 2 : QUESTION 1 ================= -->
+<section class="sheet">
+  <h2>1) La forme matricielle</h2>
+
+  <div class="note"><span class="t">📗 Rappel du cours : écrire un système en A · x = b</span>
+    Tout système linéaire peut s'écrire avec 3 « tableaux » :
+    <br>• <b>A</b>, la matrice des coefficients : <b>une ligne par équation</b>, <b>une colonne par inconnue</b> ;
+    <br>• <b>x</b>, le vecteur des inconnues, écrit en colonne ;
+    <br>• <b>b</b>, le second membre : ce qu'il y a à droite du « = », en colonne.
+    <br><span class="src">Cours chap. 1, « Systems of linear equations ».</span>
+  </div>
+
+  <div class="step"><span class="n">1</span>On fait la liste des inconnues, <b>dans l'ordre</b> : x₁, x₂, x₃, x₄. Il y en a 4, donc A aura <b>4 colonnes</b>.
+    Il y a 3 équations, donc A aura <b>3 lignes</b>.</div>
+
+  <div class="step"><span class="n">2</span>On réécrit chaque équation avec <b>les 4 inconnues dans l'ordre</b>. Celles qui manquent ont un coefficient <span class="hl">0</span>, et un « x » tout seul a un coefficient <span class="hl">1</span> :</div>
+  <table class="h">
+    <tr><th>Équation</th><th>x₁</th><th>x₂</th><th>x₃</th><th>x₄</th><th>= b</th></tr>
+    <tr><td class="k">x₁ − x₂ = 1</td><td>1</td><td>−1</td><td class="g">0</td><td class="g">0</td><td>1</td></tr>
+    <tr><td class="k">x₂ − x₃ = 1</td><td class="g">0</td><td>1</td><td>−1</td><td class="g">0</td><td>1</td></tr>
+    <tr><td class="k">x₃ + 3x₄ = 3</td><td class="g">0</td><td class="g">0</td><td>1</td><td>3</td><td>3</td></tr>
+  </table>
+  
+
+  <div class="step"><span class="n">3</span>On recopie ce tableau : les 4 colonnes « x » donnent A, la colonne « = b » donne b :</div>
+  <div class="center"><span class="box big">
+    <span class="m"><span class="c c4"><span>1</span><span>−1</span><span>0</span><span>0</span><span>0</span><span>1</span><span>−1</span><span>0</span><span>0</span><span>0</span><span>1</span><span>3</span></span></span>
+    ·
+    <span class="m"><span class="c c1"><span>x₁</span><span>x₂</span><span>x₃</span><span>x₄</span></span></span>
+    =
+    <span class="m"><span class="c c1"><span>1</span><span>1</span><span>3</span></span></span>
+  </span></div>
+  <p class="k center">soit A · x = b, avec A de taille 3 × 4, x de taille 4 × 1, b de taille 3 × 1.</p>
+
+  <div class="step"><span class="n">4</span><b>On vérifie</b> en refaisant le produit A · x (ligne de A × colonne x, comme à l'exo 1 du devoir) :</div>
+  <div class="math">
+    <span class="g">ligne 1 :</span> 1·x₁ + (−1)·x₂ + 0·x₃ + 0·x₄ = x₁ − x₂ &nbsp;→ doit valoir 1 ✓ (équation 1)<br>
+    <span class="g">ligne 2 :</span> 0·x₁ + 1·x₂ + (−1)·x₃ + 0·x₄ = x₂ − x₃ &nbsp;→ doit valoir 1 ✓ (équation 2)<br>
+    <span class="g">ligne 3 :</span> 0·x₁ + 0·x₂ + 1·x₃ + 3·x₄ = x₃ + 3x₄ &nbsp;→ doit valoir 3 ✓ (équation 3)
+  </div>
+  <p class="small k">On retombe sur le système de départ ✓. Les 0 en vert du tableau = les inconnues absentes.</p>
+  
+  <div class="piege"><span class="t">⚠ Les pièges</span>
+    · <b>Oublier les 0</b> : chaque ligne de A doit avoir 4 cases, même si l'équation n'a que 2 inconnues.<br>
+    · <b>Le signe</b> : « x₁ − x₂ », c'est 1·x₁ + <b>(−1)</b>·x₂. On écrit −1 dans A, pas 1.<br>
+    · <b>Les tailles</b> : (3 × 4) · (4 × 1) = (3 × 1), la taille de b ✓.
+  </div>
+</section>
+
+<!-- ================= PAGE 3-4 : QUESTION 2 ================= -->
+<section class="sheet">
+  <h2>2) Montrer qu'il y a une infinité de solutions</h2>
+
+  <div class="note"><span class="t">📗 Rappel du cours : combien de solutions ?</span>
+    Un système linéaire a toujours <b>0, 1 ou une infinité</b> de solutions, jamais 2 ou 3. Pour savoir lequel, on le met <b>en escalier</b> (pivot de Gauss), puis :
+    <br>• une ligne « 0 = un nombre non nul » → <b>aucune</b> solution ;
+    <br>• sinon, autant de pivots que d'inconnues → <b>une seule</b> solution ;
+    <br>• sinon, moins de pivots que d'inconnues → <b>une infinité</b> (les inconnues sans pivot sont libres).
+    <br><span class="src">Cours chap. 1, pivot de Gauss. C'est le même raisonnement que l'exo 7 du devoir.</span>
+  </div>
+
+  <div class="step"><span class="n">1</span>On écrit la <b>matrice augmentée</b> [A | b] : c'est A, plus la colonne b collée à droite derrière une barre.</div>
+  <div class="math center"><span class="m"><span class="c" style="grid-template-columns:repeat(5,auto)">
+    <span class="bgy">1</span><span>−1</span><span>0</span><span>0</span><span class="bar">1</span>
+    <span class="bgv">0</span><span class="bgy">1</span><span>−1</span><span>0</span><span class="bar">1</span>
+    <span class="bgv">0</span><span class="bgv">0</span><span class="bgy">1</span><span>3</span><span class="bar">3</span>
+  </span></span>
+  &nbsp;<span class="side">← déjà en escalier !</span></div>
+
+  <div class="step"><span class="n">2</span>Pourquoi « en escalier » ? Regarde où commence chaque ligne :</div>
+  <div class="math">
+    ligne 1 : premier nombre non nul en <b>colonne 1</b><br>
+    ligne 2 : premier nombre non nul en <b>colonne 2</b> &nbsp;<span class="side">← une marche plus à droite</span><br>
+    ligne 3 : premier nombre non nul en <b>colonne 3</b> &nbsp;<span class="side">← encore une marche</span>
+  </div>
+  <p>Chaque ligne commence plus à droite que celle du dessus, avec des <span class="hlv">0 en bas à gauche</span>. C'est exactement ce que le pivot de Gauss chercherait à obtenir. <b>Ici, il n'y a aucune opération à faire.</b> Les pivots sont les 3 nombres surlignés en jaune.</p>
+
+  <div class="step"><span class="n">3</span><b>Test n°1 : y a-t-il une contradiction ?</b> On cherche une ligne de la forme (0 0 0 0 | c) avec c ≠ 0, qui voudrait dire « 0 = c », impossible.</div>
+  <p>Chaque ligne a un pivot non nul à gauche de la barre → <b>aucune</b> ligne de ce type. <span class="tick">✓ Le système a au moins une solution.</span></p>
+
+  <div class="step"><span class="n">4</span><b>Test n°2 : y a-t-il une inconnue libre ?</b> On compte :</div>
+  <table class="h">
+    <tr><th>Colonne</th><th>x₁</th><th>x₂</th><th>x₃</th><th>x₄</th></tr>
+    <tr><td class="k">A un pivot ?</td><td class="tick">oui</td><td class="tick">oui</td><td class="tick">oui</td><td class="cross">non</td></tr>
+  </table>
+  <p>3 pivots pour 4 inconnues : il reste <b>4 − 3 = 1 inconnue libre</b>, c'est <span class="hl">x₄</span>.</p>
+
+  <div class="cols">
+    <div class="note"><span class="t">Conclusion du cours</span>
+      Pas de contradiction <b>+</b> une inconnue libre ⟹ <b>une infinité de solutions</b>.
+    </div>
+    <div class="note"><span class="t">Version « rang »</span>
+      Le rang = le nombre de pivots. rang(A) = rang([A|b]) = 3, et 3 &lt; 4 inconnues ⟹ infinité de solutions.
+    </div>
+  </div>
+</section>
+
+<section class="sheet">
+  <h3>On le prouve concrètement : toutes les solutions</h3>
+
+  <div class="step"><span class="n">1</span>On pose <span class="hl">x₄ = t</span>, où t est <b>n'importe quel nombre réel</b>. <span class="side">← t, c'est un curseur qu'on peut bouger</span></div>
+
+  <div class="step"><span class="n">2</span>On <b>remonte l'escalier</b> : on part de la dernière équation (une seule inconnue en plus de t), puis on remonte.</div>
+  <div class="math">
+    <span class="g">Équation 3 :</span> x₃ + 3x₄ = 3<br>
+    &nbsp;&nbsp;on remplace x₄ par t : x₃ + 3t = 3<br>
+    &nbsp;&nbsp;on passe 3t de l'autre côté (il change de signe) : <span class="hl">x₃ = 3 − 3t</span>
+  </div>
+  <div class="math">
+    <span class="g">Équation 2 :</span> x₂ − x₃ = 1 &nbsp;donc&nbsp; x₂ = 1 + x₃<br>
+    &nbsp;&nbsp;on remplace x₃ par ce qu'on vient de trouver : x₂ = 1 + (3 − 3t)<br>
+    &nbsp;&nbsp;on additionne : <span class="hl">x₂ = 4 − 3t</span>
+  </div>
+  <div class="math">
+    <span class="g">Équation 1 :</span> x₁ − x₂ = 1 &nbsp;donc&nbsp; x₁ = 1 + x₂<br>
+    &nbsp;&nbsp;on remplace x₂ : x₁ = 1 + (4 − 3t)<br>
+    &nbsp;&nbsp;on additionne : <span class="hl">x₁ = 5 − 3t</span>
+  </div>
+
+  <div class="step"><span class="n">3</span>On rassemble :</div>
+  <div class="center"><span class="box big">(x₁, x₂, x₃, x₄) = (5 − 3t, 4 − 3t, 3 − 3t, t), pour tout réel t</span></div>
+
+  <div class="step"><span class="n">4</span><b>On vérifie la formule</b> en la remettant dans les 3 équations, avec t quelconque :</div>
+  <div class="math">
+    x₁ − x₂ = (5 − 3t) − (4 − 3t) = 5 − 3t − 4 + 3t = <span class="hl">1</span> ✓ &nbsp;<span class="side">← les t s'annulent</span><br>
+    x₂ − x₃ = (4 − 3t) − (3 − 3t) = 4 − 3t − 3 + 3t = <span class="hl">1</span> ✓<br>
+    x₃ + 3x₄ = (3 − 3t) + 3t = <span class="hl">3</span> ✓ &nbsp;<span class="side">← vrai quel que soit t</span>
+  </div>
+
+  <div class="step"><span class="n">5</span>Quelques exemples, pour voir que ça marche vraiment :</div>
+  <table class="h">
+    <tr><th>t</th><th>(x₁, x₂, x₃, x₄)</th><th>x₁ − x₂</th><th>x₂ − x₃</th><th>x₃ + 3x₄</th></tr>
+    <tr><td>0</td><td>(5, 4, 3, 0)</td><td>1 ✓</td><td>1 ✓</td><td>3 ✓</td></tr>
+    <tr><td>2</td><td>(−1, −2, −3, 2)</td><td>1 ✓</td><td>1 ✓</td><td>−3 + 6 = 3 ✓</td></tr>
+  </table>
+  <p>Chaque valeur de t donne une solution <b>différente</b> (x₄ change), et il y a une infinité de nombres réels t. <b>Donc le système a une infinité de solutions.</b> <span class="tick">✓ C.Q.F.D.</span></p>
+
+  <div class="piege"><span class="t">⚠ Les pièges</span>
+    · « 3 équations, 4 inconnues » ne suffit <b>pas</b> : x₁ + x₂ = 1 et x₁ + x₂ = 2 est impossible. Il faut aussi « pas de contradiction ».<br>
+    · Un « − » devant une parenthèse change tous les signes : −(4 − 3t) = −4 <b>+</b> 3t.
+  </div>
+</section>
+
+<!-- ================= PAGE 5 : QUESTIONS 3 ET 4 ================= -->
+<section class="sheet">
+  <h2>3) La solution pour x₄ = −1</h2>
+  <p class="g">Le mot « unique » : une fois x₄ fixé, il n'y a plus d'inconnue libre. x₃, x₂, x₁ sont forcés l'un après l'autre, il n'y a qu'une seule possibilité.</p>
+
+  <p><b>Méthode A : on remonte l'escalier directement.</b></p>
+  <div class="step"><span class="n">1</span>Équation 3 avec x₄ = −1 : x₃ + 3×(−1) = 3, donc x₃ − 3 = 3, donc <span class="hl">x₃ = 6</span>. <span class="side">← 3 × (−1) = −3</span></div>
+  <div class="step"><span class="n">2</span>Équation 2 : x₂ − x₃ = 1, donc x₂ = 1 + x₃ = 1 + 6, donc <span class="hl">x₂ = 7</span>.</div>
+  <div class="step"><span class="n">3</span>Équation 1 : x₁ − x₂ = 1, donc x₁ = 1 + x₂ = 1 + 7, donc <span class="hl">x₁ = 8</span>.</div>
+
+  <p><b>Méthode B : on utilise la formule de la question 2 avec t = −1.</b></p>
+  <div class="math">
+    x₁ = 5 − 3×(−1) = 5 + 3 = 8 &nbsp;&nbsp; x₂ = 4 − 3×(−1) = 7 &nbsp;&nbsp; x₃ = 3 − 3×(−1) = 6 &nbsp;<span class="side">← même résultat ✓</span>
+  </div>
+
+  <div class="center"><span class="box big">Pour x₄ = −1 : (x₁, x₂, x₃, x₄) = (8, 7, 6, −1)</span></div>
+  <div class="step"><span class="n">✓</span><b>Vérif</b> dans l'énoncé : 8 − 7 = 1 ✓ &nbsp; 7 − 6 = 1 ✓ &nbsp; 6 + 3×(−1) = 6 − 3 = 3 ✓</div>
+
+  <h2>4) La solution pour x₄ = 1</h2>
+  <div class="step"><span class="n">1</span>Équation 3 avec x₄ = 1 : x₃ + 3×1 = 3, donc x₃ + 3 = 3, donc <span class="hl">x₃ = 0</span>.</div>
+  <div class="step"><span class="n">2</span>Équation 2 : x₂ = 1 + x₃ = 1 + 0, donc <span class="hl">x₂ = 1</span>.</div>
+  <div class="step"><span class="n">3</span>Équation 1 : x₁ = 1 + x₂ = 1 + 1, donc <span class="hl">x₁ = 2</span>.</div>
+  <div class="math">Avec la formule, t = 1 : x₁ = 5 − 3 = 2, x₂ = 4 − 3 = 1, x₃ = 3 − 3 = 0 &nbsp;<span class="side">← pareil ✓</span></div>
+
+  <div class="center"><span class="box big">Pour x₄ = 1 : (x₁, x₂, x₃, x₄) = (2, 1, 0, 1)</span></div>
+  <div class="step"><span class="n">✓</span><b>Vérif</b> : 2 − 1 = 1 ✓ &nbsp; 1 − 0 = 1 ✓ &nbsp; 0 + 3×1 = 3 ✓</div>
+
+  <div class="piege"><span class="t">⚠ Les pièges</span>
+    · Commencer par l'équation 1 : elle a 2 inconnues qu'on ne connaît pas encore (x₁ et x₂), on est bloqué. <b>Toujours partir du bas</b> de l'escalier.<br>
+    · x₃ = 0 n'est pas une erreur : 0 est un résultat tout à fait normal.<br>
+    · Les deux solutions sont « décalées » de 6 sur x₁, x₂, x₃ : quand x₄ augmente de 2, les autres baissent de 3 × 2 = 6. Ça colle avec le « −3t » ✓.
+  </div>
+</section>
+
+<!-- ================= PAGE 6 : ORAL + MÉMO ================= -->
+<section class="sheet">
+  <h2>À retenir</h2>
+  <div class="oral"><span class="t">🎤 À l'oral, dis :</span>
+    « Pour la forme matricielle, je range les coefficients dans A, une ligne par équation et une colonne par inconnue, en mettant 0 pour les inconnues absentes. A est de taille 3 × 4, x est le vecteur des 4 inconnues et b vaut (1, 1, 3).
+    <br>Pour montrer l'infinité de solutions, j'écris la matrice augmentée : elle est déjà en escalier. Il y a 3 pivots, aucune ligne du type 0 = c, donc le système est compatible. Comme il y a 4 inconnues pour 3 pivots, x₄ est libre.
+    <br>Je pose x₄ = t et je remonte : x₃ = 3 − 3t, x₂ = 4 − 3t, x₁ = 5 − 3t. Chaque réel t donne une solution, donc il y en a une infinité.
+    <br>Enfin, pour x₄ = −1 je trouve (8, 7, 6, −1), et pour x₄ = 1 je trouve (2, 1, 0, 1). J'ai vérifié les deux dans les trois équations. »
+  </div>
+
+  <h3>La fiche mémo</h3>
+  <div class="cols">
+    <div class="note"><span class="t">Forme matricielle</span>A = coefficients (lignes = équations, colonnes = inconnues, 0 si absente). x en colonne. b = seconds membres.</div>
+    <div class="note"><span class="t">Escalier</span>Chaque ligne commence plus à droite que celle du dessus. Pivot = premier nombre non nul de la ligne.</div>
+    <div class="note"><span class="t">Nombre de solutions</span>Ligne « 0 = c » (c ≠ 0) → aucune. Pivots = inconnues → une seule. Pivots &lt; inconnues → infinité.</div>
+    <div class="note"><span class="t">Variable libre</span>Inconnue sans pivot. On pose x = t, puis on remonte l'escalier de bas en haut.</div>
+    <div class="note"><span class="t">Toujours vérifier</span>Remettre la solution dans les équations de <b>l'énoncé</b>, pas dans celles qu'on a transformées.</div>
+    <div class="note"><span class="t">Les résultats</span>(5 − 3t, 4 − 3t, 3 − 3t, t) ; x₄ = −1 → (8, 7, 6, −1) ; x₄ = 1 → (2, 1, 0, 1).</div>
+  </div>
+</section>
+</body>
+</html>
